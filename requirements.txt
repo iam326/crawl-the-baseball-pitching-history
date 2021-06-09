@@ -1,0 +1,14 @@
+beautifulsoup4==4.9.3
+certifi==2021.5.30
+chardet==4.0.0
+flake8==3.9.2
+idna==2.10
+importlib-metadata==4.5.0
+mccabe==0.6.1
+pycodestyle==2.7.0
+pyflakes==2.3.1
+requests==2.25.1
+soupsieve==2.2.1
+typing-extensions==3.10.0.0
+urllib3==1.26.5
+zipp==3.4.1
