@@ -32,16 +32,18 @@ for i in range(START, END - 1):
     response = requests.get('https://baseball.yahoo.co.jp/npb/game/2021000{}/top'.format(str(i).zfill(3)))
     soup = BeautifulSoup(response.text, 'html.parser')
 
+    # 日付を取得する
+    title = soup.find('title').get_text()
+    if title.startswith('エラーページ'):
+        continue
+    date = re.findall(r'\d+', title.split()[0])
+    game_date = '{}{}{}'.format(date[0], date[1].zfill(2), date[2].zfill(2))
+
     # チーム名を取得する
     vs = soup.select_one('.bb-head01__title').get_text()
     teams = vs.split('vs.')
     home_team = teams[0].strip()
     visitor_team = teams[1].strip()
-
-    # 日付を取得する
-    title = soup.find('title').get_text()
-    date = re.findall(r'\d+', title.split()[0])
-    game_date = '{}{}{}'.format(date[0], date[1].zfill(2), date[2].zfill(2))
 
     # 両チームのバッテリーを取得する
     batteries = soup.select('#battery > table > tbody > tr > td')
