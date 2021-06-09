@@ -45,6 +45,8 @@ for i in range(START, END - 1):
 
     # 両チームのバッテリーを取得する
     batteries = soup.select('#battery > table > tbody > tr > td')
+    if len(batteries) == 0:
+        continue
 
     # ビジターチームの登板投手名を取得する
     visitor_pitchers = [p.strip() for p in batteries[0].get_text().split('-')[0].split('、')]
